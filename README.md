@@ -19,7 +19,19 @@ This is a simple library that wraps the [Pusher PHP library](https://github.com/
 ## How to use
 Example to send a new message to the client
 ```php
-$this->ci_pusher->trigger('test_channel', 'my_event', array('message' => 'Hello World'));
+$this->load->library('ci_pusher');
+$pusher = $this->ci_pusher->get_pusher();
+$pusher->trigger('test_channel', 'my_event', array('message' => 'Hello World'));
 ```
 
 More detailed documentation can be found in [Pusher PHP SDK documentation](https://github.com/pusher/pusher-http-php#publishingtriggering-events)
+
+## Changelog
+##### v2.0.0 - June 2015
+- Created new function that returns the Pusher object.
+- Removed all of the duplicated Pusher function used in previous version.
+- Made small change to debug class name.
+- Updated example code.
+
+##### v.1.0.0 - April 2015
+- Initial release.

@@ -21,13 +21,17 @@
 			}
 		};
 
-		var pusher = new Pusher('<your-pusher-app-key-here>');
+		var pusher = new Pusher('c55464b32aefbbca062e');
 		var channel = pusher.subscribe('test_channel');
 
 		channel.bind('my_event', function(data) {
+			document.getElementById('event').innerHTML = data.message;
 			alert(data.message);
 		});
 	</script>
+
+	<p id="event">Waiting on event...</p>
+	<p>Go to <strong><a href="/example/trigger_event" target="_blank">/example/trigger_event</a></strong> in a new tab to trigger event.</p>
 
 </body>
 </html>

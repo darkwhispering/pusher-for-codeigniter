@@ -15,7 +15,7 @@
  * @author      Mattias Hedman
  * @license     MIT
  * @link        https://github.com/darkwhispering/pusher-for-codeigniter
- * @version     1.0.0
+ * @version     2.0.0
  */
 
 Class Ci_pusher
@@ -42,109 +42,28 @@ Class Ci_pusher
             // Set logger if debug is set to true
             if ($this->config->item('pusher_debug') === TRUE )
             {
-                $this->pusher->set_logger(new ci_pusher_logger());
+                $this->pusher->set_logger(new Ci_pusher_logger());
                 log_message('debug', 'CI Pusher library debug ON');
             }
         }
     }
 
+    // --------------------------------------------------------------------
+
     /**
-     * Trigger an event by providing event name and payload.
-     * Optionally provide a socket ID to exclude a client (most likely the sender).
+     * Get Pusher object
      *
-     * @param   array   $channels   An array of channel names to publish the event on.
-     * @param   string  $event
-     * @param   mixed   $data       Event data
-     * @param   int     $socket_id  [optional]
-     * @param   bool    $debug      [optional]
-     *
-     * @return  bool|string
+     * @return  Object
      */
-    public function trigger($channels, $event, $data, $socket_id = null, $debug = FALSE, $already_encoded = FALSE)
+    public function get_pusher()
     {
-        return $this->pusher->trigger($channels, $event, $data, $socket_id, $debug, $already_encoded);
+        return $this->pusher;
     }
 
     // --------------------------------------------------------------------
 
     /**
-     * Creates a socket signature
-     *
-     * @param   int     $socket_id
-     * @param   string  $custom_data
-     *
-     * @return  string
-     */
-    public function socket_auth($channel, $socket_id, $custom_data = FALSE)
-    {
-        return $this->pusher->socket_auth($channel, $socket_id, $custom_data);
-    }
-
-    // --------------------------------------------------------------------
-
-    /**
-     * Creates a presence signature (an extension of socket signing)
-     *
-     * @param   int     $socket_id
-     * @param   string  $user_id
-     * @param   mixed   $user_info
-     *
-     * @return  string
-     */
-    public function presence_auth($channel, $socket_id, $user_id, $user_info = FALSE)
-    {
-        return $this->pusher->presence_auth($channel, $socket_id, $user_id, $user_info);
-    }
-
-    // --------------------------------------------------------------------
-
-    /**
-     * GET arbitrary REST API resource using a synchronous http client.
-     * All request signing is handled automatically.
-     *
-     * @param   string  $path   Path excluding /apps/APP_ID
-     * @param   params  $array  API params (see http://pusher.com/docs/rest_api)
-     *
-     * @return  See Pusher API docs
-     */
-    public function get($path, $params = array())
-    {
-        return $this->pusher->get($path, $params);
-    }
-
-    // --------------------------------------------------------------------
-
-    /**
-     *  Fetch channel information for a specific channel.
-     *
-     * @param   string  $channel  The name of the channel
-     * @param   array   $params   Additional parameters for the query e.g. $params = array( 'info' => 'connection_count' )
-     *
-     * @return  object
-     */
-    public function get_channel_info($channel, $params = array())
-    {
-        return $this->pusher->get_channel_info($channel, $params);
-    }
-
-    // --------------------------------------------------------------------
-
-    /**
-     * Fetch a list containing all channels
-     *
-     * @param   array  $params  Additional parameters for the query e.g. $params = array( 'info' => 'connection_count' )
-     *
-     * @return  array
-     */
-    public function get_channels($params = array())
-    {
-        return $this->pusher->get_channels($params);
-    }
-
-    // --------------------------------------------------------------------
-
-    /**
-     * Build optional option array
+     * Build optional options array
      *
      * @return  array
      */
@@ -187,7 +106,7 @@ Class Ci_pusher
  *
  * Logs all messages to CodeIgniter log
  */
-Class ci_pusher_logger {
+Class Ci_pusher_logger {
 
     /**
      * Log Pusher log message to CodeIgniter log
