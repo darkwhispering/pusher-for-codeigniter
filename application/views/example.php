@@ -21,7 +21,7 @@
 			}
 		};
 
-		var pusher = new Pusher('c55464b32aefbbca062e');
+		var pusher = new Pusher('<your-pusher-app-key-here>');
 		var channel = pusher.subscribe('test_channel');
 
 		channel.bind('my_event', function(data) {
