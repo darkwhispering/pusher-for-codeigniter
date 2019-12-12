@@ -1,3 +1,7 @@
+![Not maintained](https://img.shields.io/badge/maintained%3F-no!-red.svg?style=flat)
+
+**This library is no longer activly maintained or updated. It might still work, but use at your own risk.**
+
 # Pusher PHP SDK for CodeIgniter
 
 This is a simple library that wraps the [Pusher PHP library](https://github.com/pusher/pusher-http-php) and give you access to the Pusher methods using regular CodeIgniter syntax.
